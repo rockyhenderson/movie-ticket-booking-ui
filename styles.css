@@ -17,6 +17,7 @@ body {
 }
 body {
   background-color: #161620;
+
 }
 .head-icons {
   font-size: 1.5em;
@@ -43,8 +44,37 @@ body {
   height: 400px;
   top: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
 }
+.date-and-venue-selection{
+  z-index:9;
+  margin-top: 350px;
+  background-color: #161620;
+  height:100%;
+}
+#movie-tag h1{
+  margin:0;
+  bottom:0;
+  margin-left:15px;
+  color:#fff;
+  font-size: 4em;
+  margin-bottom:50px;
+}
+
+
+
+
+
+
+
+
+
+
 .ticket-booking-section {
+  display: none;
   height: 350px;
   margin-top: 35%;
   background-color: #161620;
@@ -162,6 +192,7 @@ button.plus {
 }
 .date-selector,
 .time-selector {
+  z-index: 9;
   color: #fff;
   font-family: "Roboto", sans-serif;
 }
@@ -353,5 +384,3 @@ button.plus:active::after,
   opacity: 1;
   transform: translateY(0);
 }
-
-/
