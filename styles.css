@@ -1,9 +1,10 @@
 * {
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
-html{
-    overflow-x: hidden;
-    width:100%;
+html {
+  overflow-x: hidden;
+  width: 100%;
 }
 html,
 body {
@@ -69,7 +70,7 @@ body {
 .seat {
   width: 35px;
   height: 35px;
-  background-color: #4a4a4a;
+  background-color: #494848;
   border-radius: 12px;
   cursor: pointer;
 }
@@ -78,4 +79,38 @@ body {
   background-color: transparent;
   pointer-events: none;
   width: 5px;
+}
+.ticket-info {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+  font-size: 1em;
+}
+
+.ticket-info .status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.available {
+  background-color: #494848;
+}
+
+.taken {
+  background-color: #fff;
+}
+
+.selected {
+  background-color: #960ff8;
 }
