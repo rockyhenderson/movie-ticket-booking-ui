@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Movie Page</title>
+    <script
+      src="https://kit.fontawesome.com/b6b5f43622.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="moviepagestyles.css" />
+  </head>
+  <body>
+    <div
+      class="debug-box"
+      style="
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+      "
+    ></div>
+    <div class="mobile">
+      <div class="head-icons">
+        <i class="fa-solid fa-arrow-left" style="color: white"></i>
+        <div class="icon-wrapper-div">
+          <i class="fa-solid fa-heart" style="color: white"></i>
+          <i class="fa-solid fa-arrow-up-from-bracket" style="color: white"></i>
+        </div>
+      </div>
+      <div class="head-wrapper">
+        <div class="header-image"></div>
+        <div class="movie-head-wrapper">
+          <div class="movie-info">
+            <div id="movie-title-container">
+              <h1 id="movie-title">Godzilla</h1>
+            </div>
+            <p id="movie-genre">Action, Adventure | 2h 10m</p>
+            <div class="info-wrapper">
+              <div class="age-language">
+                <p class="pill">PG-13</p>
+                <p class="pill">English</p>
+              </div>
+              <div class="ratings">
+                <div
+                  id="imdb-rating"
+                  style="display: flex; align-items: center; height: 25px"
+                >
+                  <img
+                    src="IMDbLogo.png"
+                    alt="IMDb logo"
+                    style="height: 25px"
+                  />
+                  <p style="margin-left: 5px">7.2</p>
+                </div>
+                <p style="margin: 0px; margin-left: 15px; margin-right: 20px">
+                  |
+                </p>
+                <div
+                  id="rottentom-rating"
+                  style="display: flex; align-items: center; height: 25px"
+                >
+                  <img
+                    src="RottenTomLogo.png"
+                    alt="Rotten Tomatoes logo"
+                    style="height: 25px"
+                  />
+                  <p style="margin-left: 5px">85%</p>
+                </div>
+              </div>
+            </div>
+            <button class="book-ticket-btn" id="showDivButton">
+              <i class="fa-solid fa-ticket-simple"></i> Buy Ticket
+            </button>
+          </div>
+
+          <div class="movie-description">
+            <h2>Description</h2>
+            <p>
+              In a world on the brink, Godzilla—a colossal force of
+              nature—emerges as both savior and destroyer. As scientists and
+              governments scramble to understand the unstoppable beast, humanity
+              faces a chilling truth: we may no longer be at the top of the food
+              chain. In a breathtaking clash of man versus monster, the fate of
+              the world hangs in the balance.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="reviews">
+        <h2>Reviews</h2>
+        <div class="review-item">
+          <div class="review-box">
+            <strong>John Doe</strong>⭐⭐⭐⭐⭐<br />
+            <p>
+              Amazing visuals and great action sequences! A must-watch for
+              monster fans.
+            </p>
+          </div>
+        </div>
+        <div class="review-item">
+          <div class="review-box">
+            <strong>Jane Smith</strong>⭐⭐⭐⭐⭐<br />
+            <p>
+              Thrilling movie with great suspense. Storyline could have been a
+              bit stronger, though.
+            </p>
+          </div>
+        </div>
+        <!-- See More Comments Button -->
+        <button class="see-more-comments">See More Comments</button>
+      </div>
+    </div>
+    <div id="slidingDiv">
+      <div id="slidingDivContent">
+        <div class="sliding-head-content">
+          <h2 style="margin-left: 20px">Choose Your Showtime</h2>
+          <button id="closeDivButton" class="close-button">&times;</button>
+        </div>
+        <div class="date-selector">
+          <h3>Select Date</h3>
+          <div class="date-options">
+            <div class="date-item">July<br />08</div>
+            <div class="date-item selected">July<br />09</div>
+            <div class="date-item">July<br />10</div>
+            <div class="date-item">July<br />11</div>
+            <div class="date-item">July<br />12</div>
+            <div class="date-item">July<br />13</div>
+            <div class="date-item">July<br />14</div>
+            <div class="date-item">July<br />15</div>
+          </div>
+        </div>
+        <div class="time-selector">
+          <h3>Select Time</h3>
+          <div class="time-options">
+            <div class="time-item">14:00</div>
+            <div class="time-item selected">15:00</div>
+            <div class="time-item">16:00</div>
+            <div class="time-item">17:00</div>
+            <div class="time-item">18:00</div>
+            <div class="time-item">19:00</div>
+            <div class="time-item">20:00</div>
+            <div class="time-item">21:00</div>
+          </div>
+        </div>
+        <div class="next-step-container">
+          <button id="nextStepButton" class="next-step-button">
+            Next Step
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="topModal" class="top-modal">
+      <h2 style="margin-top: 0">Seat Selection</h2>
+      <button id="closeTopModalButton" class="close-button">&times;</button>
+      <div class="seating-wrapper">
+        <div class="seating-chart">
+          <svg
+            class="screen-curve"
+            viewBox="0 0 100 20"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,20 Q50,0 100,20"
+              fill="none"
+              stroke="#d6b6ff"
+              stroke-width="3"
+            />
+          </svg>
+          <!-- First Row with gaps and seats as specified -->
+          <div class="row">
+            <div class="seat gap"></div>
+            <!-- A1NoSeat -->
+            <div class="seat gap"></div>
+            <!-- A2NoSeat -->
+            <div class="seat"></div>
+            <!-- A3Seat -->
+            <div class="seat"></div>
+            <!-- A4Seat -->
+            <div class="seat gap"></div>
+            <!-- A5NoSeat -->
+            <div class="seat"></div>
+            <!-- A6Seat -->
+            <div class="seat"></div>
+            <!-- A7Seat -->
+            <div class="seat gap"></div>
+            <!-- A8NoSeat -->
+            <div class="seat gap"></div>
+            <!-- A9NoSeat -->
+          </div>
+
+          <!-- Rows below filled with seats -->
+          <div class="row">
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+          </div>
+
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+          </div>
+
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+          </div>
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+          </div>
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+          </div>
+
+          <div class="row">
+            <div class="seat gap"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat gap"></div>
+          </div>
+        </div>
+      </div>
+      <div class="zoom-controls">
+        <p class="helper-text">Scroll or use buttons to zoom</p>
+        <button id="zoomOut" class="zoom-button">-</button>
+        <button id="zoomIn" class="zoom-button">+</button>
+      </div>
+      <div class="ticket-info">
+        <div class="status">
+          <div class="circle available"></div>
+          Available
+        </div>
+        <div class="status">
+          <div class="circle taken"></div>
+          Taken
+        </div>
+        <div class="status">
+          <div class="circle selected"></div>
+          Selected
+        </div>
+      </div>
+      <div id="seatsSelected" class="seats-selected">Seats Selected: None</div>
+      <button class="next-step-custom-button">Pricing</button>
+    </div>
+  </body>
+  <script>
+    function adjustFontSizeToFit(element) {
+      const parent = element.parentElement;
+      let currentFontSize = 100; // Start with a reasonably large font size
+      element.style.fontSize = `${currentFontSize}px`;
+
+      console.log("Starting adjustment with font size:", currentFontSize);
+
+      // Reduce the font size until the text fits within the container width and height
+      while (
+        element.scrollWidth > parent.offsetWidth ||
+        element.scrollHeight > parent.offsetHeight
+      ) {
+        console.log(
+          `Text width: ${element.scrollWidth}px, Parent width: ${parent.offsetWidth}px`
+        );
+        console.log(
+          `Text height: ${element.scrollHeight}px, Parent height: ${parent.offsetHeight}px`
+        );
+
+        currentFontSize--;
+        element.style.fontSize = `${currentFontSize}px`;
+
+        console.log("Adjusting font size to:", currentFontSize);
+
+        // Prevent getting too small
+        if (currentFontSize < 5) {
+          console.warn("Font size has reached the minimum limit of 5px");
+          break;
+        }
+      }
+
+      console.log("Final font size after adjustment:", currentFontSize);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const headerElement = document.getElementById("movie-title");
+      adjustFontSizeToFit(headerElement);
+    });
+
+    window.addEventListener("resize", () => {
+      const headerElement = document.getElementById("movie-title");
+      console.log("Window resized. Adjusting font size again...");
+      adjustFontSizeToFit(headerElement);
+    });
+
+    document
+      .getElementById("showDivButton")
+      .addEventListener("click", function () {
+        const slidingDiv = document.getElementById("slidingDiv");
+        const viewportHeight = window.innerHeight;
+        const visibleContentHeight = 580; // Desired visible content height
+
+        // Calculate the new 'top' position so 580px of the modal is always visible
+        if (viewportHeight < visibleContentHeight) {
+          // If viewport height is less than the desired visible content height,
+          // set the top to 0 so the modal fills the whole screen
+          slidingDiv.style.top = "0px";
+        } else {
+          // Otherwise, set the top value to make sure 580px of the modal is visible
+          slidingDiv.style.top = `${viewportHeight - visibleContentHeight}px`;
+        }
+
+        // Disable scrolling on the body when the sliding div is shown
+        document.body.style.overflow = "hidden";
+      });
+
+    // Close the div when the "X" button is clicked
+    document
+      .getElementById("closeDivButton")
+      .addEventListener("click", function () {
+        closeSlidingDiv();
+      });
+
+    // Function to close the sliding div
+    function closeSlidingDiv() {
+      // Slide the div back down
+      const slidingDiv = document.getElementById("slidingDiv");
+      slidingDiv.style.top = "100%";
+
+      // Enable scrolling again
+      document.body.style.overflow = "";
+    }
+    document
+      .getElementById("nextStepButton")
+      .addEventListener("click", function () {
+        const topModal = document.getElementById("topModal");
+        topModal.classList.add("active");
+
+        // Optionally disable scrolling on the body when the modal is shown
+        document.body.style.overflow = "hidden";
+      });
+
+    function checkSelections() {
+      const selectedDate = document.querySelector(".date-item.selected");
+      const selectedTime = document.querySelector(".time-item.selected");
+      const topModal = document.getElementById("topModal");
+
+      if (selectedDate && selectedTime) {
+        // Show the new top modal by adding the active class
+        topModal.classList.add("active");
+      }
+    }
+
+    // Event listeners for date and time selection
+    document.querySelectorAll(".date-item").forEach((item) => {
+      item.addEventListener("click", function () {
+        document
+          .querySelectorAll(".date-item")
+          .forEach((i) => i.classList.remove("selected"));
+        this.classList.add("selected");
+        checkSelections();
+      });
+    });
+
+    document.querySelectorAll(".time-item").forEach((item) => {
+      item.addEventListener("click", function () {
+        document
+          .querySelectorAll(".time-item")
+          .forEach((i) => i.classList.remove("selected"));
+        this.classList.add("selected");
+        checkSelections();
+      });
+    });
+
+    // Close the top modal when the close button is clicked
+    document
+      .getElementById("closeTopModalButton")
+      .addEventListener("click", function () {
+        document.getElementById("topModal").classList.remove("active");
+      });
+
+      const seatingChart = document.querySelector('.seating-chart');
+const seatingWrapper = document.querySelector('.seating-wrapper');
+let isDragging = false;
+let startX, startY;
+let currentX = 0, currentY = 0;
+let currentZoom = 1;
+let animationFrameId;
+
+// Function to calculate the initial zoom level and center position
+function fitAndCenterSeatingChart() {
+  // Get the dimensions of the wrapper and the chart
+  const wrapperWidth = seatingWrapper.clientWidth;
+  const wrapperHeight = seatingWrapper.clientHeight;
+  const chartWidth = seatingChart.scrollWidth;
+  const chartHeight = seatingChart.scrollHeight;
+
+  // Calculate the initial zoom level to fit the chart within the wrapper
+  currentZoom = Math.min(wrapperWidth / chartWidth, wrapperHeight / chartHeight);
+
+  // Calculate the initial translation to center the chart
+  currentX = (wrapperWidth - chartWidth * currentZoom) / 2;
+  currentY = (wrapperHeight - chartHeight * currentZoom) / 2;
+
+  // Apply the initial transform
+  seatingChart.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoom})`;
+}
+
+// Call the fitAndCenterSeatingChart function on load
+window.addEventListener('load', fitAndCenterSeatingChart);
+
+// Drag functionality allowing both X and Y movement
+seatingChart.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.clientX - currentX;
+  startY = e.clientY - currentY;
+  seatingChart.style.cursor = 'grabbing';
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  
+  // Update current X and Y positions based on mouse movement
+  currentX = e.clientX - startX;
+  currentY = e.clientY - startY;
+  
+  if (!animationFrameId) {
+    animationFrameId = requestAnimationFrame(() => {
+      seatingChart.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoom})`;
+    });
+  }
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  seatingChart.style.cursor = 'grab';
+  animationFrameId = null;
+});
+
+// Zoom controls
+document.getElementById('zoomIn').addEventListener('click', () => {
+  currentZoom = Math.min(currentZoom + 0.1, 2); // Max zoom
+  seatingChart.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoom})`;
+});
+
+document.getElementById('zoomOut').addEventListener('click', () => {
+  currentZoom = Math.max(currentZoom - 0.1, 0.5); // Min zoom
+  seatingChart.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoom})`;
+});
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Seat Selection Handling
+      const seats = document.querySelectorAll(".seat:not(.taken):not(.gap)");
+
+      // Function to update the display of selected seats
+      const updateSelectedSeatsText = () => {
+        const selectedSeats = document.querySelectorAll(".seat.selected");
+        const seatsSelectedDiv = document.getElementById("seatsSelected");
+
+        if (seatsSelectedDiv) {
+          if (selectedSeats.length > 0) {
+            const selectedSeatIds = Array.from(selectedSeats).map((seat) => {
+              const rowIndex = Array.from(
+                seat.parentNode.parentNode.children
+              ).indexOf(seat.parentNode);
+              const seatIndex = Array.from(seat.parentNode.children).indexOf(
+                seat
+              );
+              return `${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`;
+            });
+
+            seatsSelectedDiv.textContent = `Seats Selected: ${selectedSeatIds.join(
+              ", "
+            )}`;
+          } else {
+            seatsSelectedDiv.textContent = "Seats Selected: None";
+          }
+        }
+      };
+
+      // Add click event listener to each seat
+      seats.forEach((seat) => {
+        seat.addEventListener("click", () => {
+          // Toggle the 'selected' class on click
+          if (seat.classList.contains("selected")) {
+            seat.classList.remove("selected");
+
+            // Remove the Font Awesome icon if it exists
+            const icon = seat.querySelector(".fa-user");
+            if (icon) {
+              seat.removeChild(icon);
+            }
+          } else {
+            seat.classList.add("selected");
+
+            // Create the Font Awesome icon and append it to the seat
+            const icon = document.createElement("i");
+            icon.classList.add("fas", "fa-user");
+            icon.style.color = "#d6b6ff";
+            seat.appendChild(icon);
+          }
+
+          // Update the selected seats text
+          updateSelectedSeatsText();
+        });
+      });
+
+      // Initialize the selected seats text
+      updateSelectedSeatsText();
+    });
+  </script>
+  <script src="app.js"></script>
+</html>
