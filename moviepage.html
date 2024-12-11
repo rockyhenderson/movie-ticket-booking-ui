@@ -25,12 +25,13 @@
     ></div>
     <div class="mobile">
       <div class="head-icons">
-        <i class="fa-solid fa-arrow-left" style="color: white"></i>
+        <i id="back-icon" class="fa-solid fa-arrow-left" style="color: white; margin-left: 10px;"></i>
         <div class="icon-wrapper-div">
-          <i class="fa-solid fa-heart" style="color: white"></i>
-          <i class="fa-solid fa-arrow-up-from-bracket" style="color: white"></i>
+          <i id="heart-icon" class="fa-solid fa-heart" style="color: white;"></i>
+          <i id="share-icon" class="fa-solid fa-arrow-up-from-bracket" style="color: white; margin-right: 10px;"></i>
         </div>
       </div>
+      
       <div class="head-wrapper">
         <div class="header-image"></div>
         <div class="movie-head-wrapper">
@@ -39,6 +40,7 @@
               <h1 id="movie-title">Godzilla</h1>
             </div>
             <p id="movie-genre">Action, Adventure | 2h 10m</p>
+            
             <div class="info-wrapper">
               <div class="age-language">
                 <p class="pill">PG-13</p>
@@ -113,7 +115,101 @@
         <!-- See More Comments Button -->
         <button class="see-more-comments">See More Comments</button>
       </div>
+      <!-- Modal Structure -->
+      <div id="modalBackdrop" class="modal-backdrop"></div>
+      <div id="content-modal" class="modal" style="color: white">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <header>
+            <h1 id="modal-h1">Book Your Movie</h1>
+            <p>Select your preferred date and time for the movie.</p>
+          </header>
+  
+          <section class="date-picker">
+            <h2>Select Date</h2>
+            <div id="date-list" class="scrollable-container">
+              <!-- 14 Dates -->
+              <div class="date-item null" data-date="2024-12-10">
+                <div class="day">Tue</div>
+                <div class="date">Dec 10</div>
+              </div>
+              <div class="date-item" data-date="2024-12-11">
+                <div class="day">Wed</div>
+                <div class="date">Dec 11</div>
+              </div>
+              <div class="date-item" data-date="2024-12-12">
+                <div class="day">Thu</div>
+                <div class="date">Dec 12</div>
+              </div>
+              <div class="date-item" data-date="2024-12-13">
+                <div class="day">Fri</div>
+                <div class="date">Dec 13</div>
+              </div>
+              <div class="date-item" data-date="2024-12-14">
+                <div class="day">Sat</div>
+                <div class="date">Dec 14</div>
+              </div>
+              <div class="date-item" data-date="2024-12-15">
+                <div class="day">Sun</div>
+                <div class="date">Dec 15</div>
+              </div>
+              <div class="date-item" data-date="2024-12-16">
+                <div class="day">Mon</div>
+                <div class="date">Dec 16</div>
+              </div>
+              <div class="date-item" data-date="2024-12-17">
+                <div class="day">Tue</div>
+                <div class="date">Dec 17</div>
+              </div>
+              <div class="date-item" data-date="2024-12-18">
+                <div class="day">Wed</div>
+                <div class="date">Dec 18</div>
+              </div>
+              <div class="date-item" data-date="2024-12-19">
+                <div class="day">Thu</div>
+                <div class="date">Dec 19</div>
+              </div>
+              <div class="date-item" data-date="2024-12-20">
+                <div class="day">Fri</div>
+                <div class="date">Dec 20</div>
+              </div>
+              <div class="date-item null" data-date="2024-12-21">
+                <div class="day">Sat</div>
+                <div class="date">Dec 21</div>
+              </div>
+              <div class="date-item" data-date="2024-12-22">
+                <div class="day">Sun</div>
+                <div class="date">Dec 22</div>
+              </div>
+            </div>
+          </section>
+  
+          <section class="time-picker">
+            <h2>Select Time</h2>
+            <div id="time-list" class="scrollable-container">
+              <!-- 10 Time Slots -->
+              <div class="time-item null" data-time="10:00 AM">10:00 AM</div>
+              <div class="time-item null" data-time="11:30 AM">11:30 AM</div>
+              <div class="time-item" data-time="1:00 PM">1:00 PM</div>
+              <div class="time-item" data-time="2:30 PM">2:30 PM</div>
+              <div class="time-item" data-time="4:00 PM">4:00 PM</div>
+              <div class="time-item" data-time="5:30 PM">5:30 PM</div>
+              <div class="time-item" data-time="7:00 PM">7:00 PM</div>
+              <div class="time-item" data-time="8:30 PM">8:30 PM</div>
+              <div class="time-item" data-time="10:00 PM">10:00 PM</div>
+              <div class="time-item null" data-time="11:30 PM">11:30 PM</div>
+            </div>
+          </section>
+  
+          <div class="bottom-button">
+            <button id="confirm-btn" disabled>Confirm Selection</button>
+            <p id="selection-summary"></p>
+          </div>
+        </div>
+      </div>
     </div>
+
+      
   </body>
   <script src="app.js"></script>
 </html>
