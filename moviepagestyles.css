@@ -605,7 +605,7 @@ button:hover:not(:disabled) {
 }
 #confirm-btn {
   margin-top: 10px;
-  width: 100%;
+  width: 95%;
   padding: 10px;
   background: var(--button-bg);
   color: var(--light-text);

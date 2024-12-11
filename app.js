@@ -197,3 +197,21 @@ document.addEventListener("keydown", (e) => {
     closeModal();
   }
 });
+
+const confirmButton = document.getElementById("confirm-btn");
+
+// Function to handle button click
+function handleConfirmClick() {
+  console.log("Confirm button clicked.");
+
+  // Check if the button is enabled
+  if (!confirmButton.disabled) {
+    console.log("Button is active. Redirecting to seatandpayment.html...");
+    window.location.href = "seating.html";
+  } else {
+    console.log("Button is disabled. No action taken.");
+  }
+}
+
+// Event listener for the button click
+confirmButton.addEventListener("click", handleConfirmClick);
