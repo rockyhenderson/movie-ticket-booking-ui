@@ -50,17 +50,80 @@
 
     <div class="details-box">
       <h2 class="details-title">Details</h2>
-      <div class="details-buttons">
-        <button class="details-button login-btn selected">Login</button>
-        <button class="details-button guest-btn">Guest</button>
+      <div
+        style="
+          margin-top: 5px;
+          display: flex;
+          justify-content: center;
+          color: grey;
+        "
+      >
+        <i> Please choose how you want to proceed!</i>
+      </div>
+      <div class="loginwrapper">
+        <div class="details-buttons">
+          <button class="details-button login-btn selected">Login</button>
+          <button class="details-button guest-btn">Guest</button>
+        </div>
+
+        <div class="output-divs">
+          <!-- Login Div -->
+          <div id="login-div" class="red-div">
+            <h3>Login</h3>
+            <form id="login-form">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                required
+              />
+
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+
+              <button type="button" id="login-confirm">Login</button>
+            </form>
+          </div>
+
+          <!-- Guest Div -->
+          <div id="guest-div" class="hidden blue-div">
+            <h3>Guest Details</h3>
+            <form id="guest-form">
+              <label for="guest-email">Email</label>
+              <input
+                type="email"
+                id="guest-email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+
+              <label for="guest-age">Age</label>
+              <input
+                type="number"
+                id="guest-age"
+                name="age"
+                placeholder="Enter your age"
+                min="0"
+                required
+              />
+
+              <button type="button" id="guest-confirm">
+                Continue as Guest
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="output-divs">
-      <div id="login-div" class="red-div"></div>
-      <div id="guest-div" class="hidden blue-div"></div>
-    </div>
-
     <button id="confirm-seats">Next</button>
     <script>
       // Select buttons and divs
