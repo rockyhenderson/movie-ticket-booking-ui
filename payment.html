@@ -134,6 +134,12 @@
       </div>
     </div>
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Retrieve selected seats from sessionStorage
+        const selectedSeats = JSON.parse(
+          sessionStorage.getItem("selectedSeats")
+        );
+      });
       // 1. Discount Code Toggle
       const toggleDiscountButton = document.getElementById("toggle-discount");
       const discountInputWrapper = document.getElementById(
@@ -159,7 +165,7 @@
       let adultQuantity = 1;
       let childQuantity = 0;
 
-      const totalTickets = 2; // Total tickets allowed
+      const totalTickets = JSON.parse(sessionStorage.getItem("selectedSeats"))?.length || 0;
 
       // Ticket DOM Elements
       const adultMinus = document.getElementById("adult-minus");
