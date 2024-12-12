@@ -12,11 +12,13 @@
   </head>
   <body>
     <div class="top-menu">
-      <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      <div class="back-arrow-wrapper">
+        <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      </div>
       <div class="breadcrumber">
         <nav class="breadcrumb">
           <span class="breadcrumb-item completed" data-url="seating.html"
-            >Seat Selection</span
+            >Seats</span
           >
           <span class="breadcrumb-divider">></span>
           <span class="breadcrumb-item active" data-url="checkoutlogin.html"
@@ -30,29 +32,18 @@
       </div>
 
       <div class="countdown">
-        <div class="countdown-label">Time Left</div>
+        <div class="countdown-label">Seats Reserved For</div>
         <div class="countdown-timer">Loading</div>
-      </div>
-    </div>
-    <div class="content-header">
-      <h1>Godzilla</h1>
-      <div class="payment-header-sub-info">
-        <div>
-          <p class="subtext">Cinema</p>
-          <p>Glasgow</p>
-        </div>
-        <div>
-          <p class="subtext">Showtime</p>
-          <p>Fri, 13 Dec, 10:50</p>
-        </div>
       </div>
     </div>
 
     <div class="details-box">
       <h2 class="details-title">Details</h2>
+
       <div
         style="
           margin-top: 5px;
+          margin-bottom: 10px;
           display: flex;
           justify-content: center;
           color: grey;
@@ -60,17 +51,18 @@
       >
         <i> Please choose how you want to proceed!</i>
       </div>
+      <div class="details-buttons">
+        <button class="details-button login-btn selected">Login</button>
+        <button class="details-button guest-btn">Guest</button>
+      </div>
       <div class="loginwrapper">
-        <div class="details-buttons">
-          <button class="details-button login-btn selected">Login</button>
-          <button class="details-button guest-btn">Guest</button>
-        </div>
-
         <div class="output-divs">
           <!-- Login Div -->
           <div id="login-div" class="red-div">
-            <h3>Login</h3>
             <form id="login-form">
+              <!-- Social Login Buttons -->
+              <!-- Divider and Email Section -->
+
               <label for="username">Username</label>
               <input
                 type="text"
@@ -89,13 +81,31 @@
                 required
               />
 
+              <!-- Remember Me Checkbox -->
+              <label for="remember-me">
+                <input type="checkbox" id="remember-me" />
+                Remember Me
+              </label>
+
               <button type="button" id="login-confirm">Login</button>
+
+              <!-- Signup Link -->
+              <p class="signup-link">
+                <a href="#">Don't have an account? Sign up here</a>
+              </p>
             </form>
+            <div class="login-button-wrapper">
+              <button type="button" class="social-login-button">
+                <i class="fa-brands fa-google"></i> Login with Google
+              </button>
+              <button type="button" class="social-login-button">
+                <i class="fa-brands fa-facebook-f"></i> Login with Facebook
+              </button>
+            </div>
           </div>
 
           <!-- Guest Div -->
           <div id="guest-div" class="hidden blue-div">
-            <h3>Guest Details</h3>
             <form id="guest-form">
               <label for="guest-email">Email</label>
               <input
@@ -124,8 +134,14 @@
         </div>
       </div>
     </div>
-    <button id="confirm-seats">Next</button>
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Retrieve selected seats from sessionStorage
+        const selectedSeats = JSON.parse(
+          sessionStorage.getItem("selectedSeats")
+        );
+      });
+
       // Select buttons and divs
       const loginButton = document.querySelector(".login-btn");
       const guestButton = document.querySelector(".guest-btn");
@@ -164,7 +180,7 @@
       });
 
       // Confirm button functionality
-      const confirmButton = document.getElementById("confirm-seats");
+      const confirmButton = document.getElementById("login-confirm");
       confirmButton.addEventListener("click", () => {
         console.log("GOING TO NEXT PAGE");
         window.location.href = "payment.html";
@@ -188,6 +204,12 @@
           });
         });
       }
+
+      guestconfirmButton = document.getElementById("guest-confirm");
+      guestconfirmButton.addEventListener("click", () => {
+        window.location.href = "payment.html";
+        // You can redirect or handle other logic here
+      });
 
       // Initialize breadcrumb navigation
       setupBreadcrumbNavigation();

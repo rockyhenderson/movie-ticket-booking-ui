@@ -28,14 +28,18 @@
   --danger-bg: #f44336;
   --info-bg: #0056b3;
 }
-
+*{
+  box-sizing: border-box;
+}
 body {
   max-width: 1100px;
-  margin: auto;
   font-family: Arial, Helvetica, sans-serif !important;
   background-color: var(--primary-bg);
   color: var(--light-text);
   padding: 0 15px;
+  overflow-x: hidden;
+  align-items: center;
+  margin:auto;
 }
 
 .top-menu {
@@ -61,7 +65,6 @@ body {
 #back-icon:active {
   transform: scale(0.9);
 }
-
 .countdown {
   font-weight: bold;
   text-transform: uppercase;
@@ -71,7 +74,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #01019f; /* Modern deep blue */
-  padding: 10px 20px; /* Compact padding */
+  padding: 8px;
   border-radius: 8px; /* Smooth edges */
   color: #4c4c4e; /* White text for contrast */
 }
@@ -126,6 +129,13 @@ p {
   display: flex;
 
   gap: 10px;
+}
+
+.back-arrow-wrapper, .breadcrumb, .countdown{
+  width:20%;
+}
+nav{
+  width:100%  !important;
 }
 
 .ticket-item {
@@ -335,19 +345,8 @@ p {
 .discount-input-wrapper button:active {
   transform: scale(0.98);
 }
-
-@media only screen and (max-width: 600px) {
-  .ticket-price {
-    margin-right: 1rem;
-  }
-}
-@media only screen and (max-width: 522px) {
-  .payment-header-sub-info {
-    margin-bottom:10px;
-  }
-  h1{
-    margin-bottom:0 !important;
-  }
+#username{
+  margin-top:0;
 }
 .pay-button {
   display: block;
@@ -526,8 +525,10 @@ p {
 /* Buttons */
 .details-buttons {
   display: flex;
-  width:450px;
+  justify-content: center;
+  width: 450px;
   margin: auto;
+  margin-bottom: 8px;
 }
 
 .details-button {
@@ -557,11 +558,16 @@ p {
 
 /* Output Divs */
 .output-divs {
-  margin: 20px auto;
+  box-sizing: border-box;
+  margin: auto;
   width: 300px;
+  width: 100%;
+  padding: 8px;
 }
 
-
+h3 {
+  margin: 0;
+}
 
 .hidden {
   display: none;
@@ -582,33 +588,31 @@ p {
   background-color: var(--highlight-color); /* Highlighted color */
   color: var(--light-text); /* White text for contrast */
   box-shadow: 0 0 10px 3px rgba(150, 15, 248, 0.7),
-              0 0 20px 6px rgba(150, 15, 248, 0.5),
-              0 0 30px 10px rgba(150, 15, 248, 0.3); /* Reduced shadow layers */
+    0 0 20px 6px rgba(150, 15, 248, 0.5), 0 0 30px 10px rgba(150, 15, 248, 0.3); /* Reduced shadow layers */
   transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
 
 .details-button.selected:hover {
   transform: scale(1.03); /* Slight scale effect on hover */
   box-shadow: 0 0 15px 6px rgba(150, 15, 248, 0.8),
-              0 0 25px 10px rgba(150, 15, 248, 0.6),
-              0 0 40px 15px rgba(150, 15, 248, 0.4); /* Slightly intensified shadow on hover */
+    0 0 25px 10px rgba(150, 15, 248, 0.6), 0 0 40px 15px rgba(150, 15, 248, 0.4); /* Slightly intensified shadow on hover */
 }
-.details-box{
+.details-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 450px;
   margin: auto;
 }
-.details-title{
-  margin:auto;
-  width:fit-content
+.details-title {
+  margin: auto;
+  width: fit-content;
 }
 /* Form Styling */
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Spacing between form elements */
+  gap: 5px; /* Spacing between form elements */
   margin-top: 20px;
 }
 
@@ -642,16 +646,408 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
-button:hover {
-  background-color: var(--button-hover-bg);
+.breadcrumb-item{
+  font-size:18px;
 }
+
 
 button:active {
   transform: scale(0.95);
 }
-.loginwrapper{
-  background-color: red;
-  height:400px;
-  width:400px;
+.loginwrapper {
+  height: fit-content;
+  width: 400px;
+  background-color: #202020;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+/* Remember Me Checkbox */
+form label[for="remember-me"] {
+  font-size: 14px;
+  font-style: italic; /* Italics for text */
+  color: var(--light-text); /* Match your light text color */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between checkbox and label */
+}
+
+#remember-me {
+  width: 16px;
+  height: 16px;
+  cursor: pointer; /* Indicate interactivity */
+}
+
+/* Login Icons Container */
+/* Social Login Button */
+.social-login-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--light-text); /* Light text */
+  background-color: var(--button-bg); /* Button background */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  gap: 10px; /* Space between icon and text */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-login-button:hover {
+  background-color: var(--button-hover-bg); /* Darker on hover */
+}
+
+.social-login-button:active {
+  transform: scale(0.95); /* Slight click effect */
+}
+
+/* Signup Link */
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-link a {
+  font-size: 15px;
+  color: var(--info-bg); /* Link color */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: rgb(112, 112, 255); /* Link hover color */
+  text-decoration: underline;
+}
+/* Social Login Buttons */
+
+#guest-confirm{
+  margin-top:10px;
+}
+.social-login-button i {
+  font-size: 20px; /* Icon size */
+}
+
+.social-login-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.social-login-button:active {
+  transform: scale(0.95);
+}
+
+/* Divider with Email Section */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--accent-gray);
+}
+
+.divider span {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--accent-gray);
+  text-transform: uppercase;
+}
+
+/* Form Fields */
+form label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--light-text);
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 14px;
+  border: 1px solid var(--accent-gray);
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  border-color: var(--highlight-color);
+}
+.login-button-wrapper{
+  margin-bottom:10px;
+  margin-top:10px;
+  width:100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+#login-form{
+  margin-top:0;
+}
+.ticket-info{
+  margin-top:10px;
+}
+.minor-info{
+  margin-bottom:10px;
+}
+@media only screen and (max-width: 600px) {
+  .breadcrumb-divider{
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .ticket-price {
+    margin-right: 1rem;
+  }
+}
+@media only screen and (max-width: 522px) {
+  .payment-header-sub-info{
+    margin-bottom:10px;
+  }
+  h2{
+    font-size: 1.7rem;
+  }
+  .payment-header-sub-info {
+    margin-bottom: 10px;
+  }
+  h1 {
+    margin-bottom: 0 !important;
+  }
+  
+  .breadcrumb-divider{
+    display: none;
+  }
+  .breadcrumb{
+   display: none !important;
+  }
+  .countdown{
+    width:50%;
+  }
+  .loginwrapper{
+    width:95% !important;
+  }
+  .social-login-button{
+    width:48% !important;
+  }
+
+  .details-button{
+    width:40vw;
+  }
+  .output-divs{
+    width:90% !important;
+  }
+  .details-buttons{
+    width:100% !important;
+  }
+}
+
+:root {
+  --primary-color: #161620;
+  --secondary-color: #494848;
+  --tertiary-color: #2c2c2c;
+  --text-color: #fff;
+  --highlight-color: #960ff8;
+  --highlight-hover-color: #a041f8;
+  --highlight-active-color: #7400b8;
+  --highlight-box-shadow: rgba(150, 15, 248, 0.5);
+  --highlight-box-shadow-hover: rgba(150, 15, 248, 0.7);
+  --highlight-box-shadow-active: rgba(150, 15, 248, 0.4);
+  --taken-seat-color: #fff;
+  --selected-seat-color: #960ff8;
+  --hover-color: #666;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-color);
+}
+
+
+
+.seating-wrapper {
+  padding-top: 35px;
+}
+.seating-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  gap: 8px;
+  justify-content: center;
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.seat.gap {
+  background-color: transparent;
+  pointer-events: none;
+  width: 5px;
+}
+
+.ticket-info {
+  padding-top: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 1em;
+}
+
+.ticket-info .status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.available {
+  background-color: var(--secondary-color);
+}
+.seat.selected {
+  background-color: var(--selected-seat-color);
+  border: 2px solid #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.seat.selected i {
+  font-size: 1.3em;
+}
+#seatsSelected{
+  color:var(--accent-light-gray);
+  font-size:25px !important;
+}
+.seat.taken {
+  position: relative;
+}
+
+.seat.taken::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Vertically center the line */
+  left: 50%; /* Horizontally center the line */
+  width: 100%; /* Line width */
+  height: 3px; /* Line thickness */
+  background-color: var(--secondary-color); /* Line color */
+  transform: translate(-50%, -50%) rotate(45deg); /* Center and rotate the line */
+  pointer-events: none; /* Prevent interaction blocking */
+}
+.seat-selection-wrapper {
+display: flex;
+justify-content: center;
+}
+
+
+
+
+
+
+.taken {
+  background-color: var(--taken-seat-color);
+}
+
+.selected {
+  background-color: var(--selected-seat-color);
+}
+
+/* For screens smaller than 430px */
+@media (max-width: 429px) {
+  #background-img {
+    background-position: 60% 80%; /* Move down slightly to keep more of Godzilla's head visible */
+  }
+}
+
+/* For screens wider than 560px but smaller than 770px */
+@media (min-width: 500px) and (max-width: 769px) {
+  body {
+    font-size: 20px;
+  }
+  #background-img {
+    background-position: 30% 65%; /* Move focus upward to keep Godzilla centered */
+    height: 450px; /* Slightly increase height to fit better */
+  }
+  .debug-box {
+    background-color: #7400b8;
+  }
+  .seat {
+    width: 8vw;
+    height: 8vw;
+    display: flex; /* Use flex for centering the cross */
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+  }
+  
+  .inner-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6em;
+    height: 50px;
+    width: 120px;
+  }
+  .seating-chart {
+    gap: 3vw;
+  }
+  #seatsSelected {
+    padding-top: 25px;
+  }
+  ul{
+    margin: 0 !important;
+  }
+
+}
+/* Tablet View: min-width 768px, max-width 1024px */
+@media (min-width: 768px) {
+  body{
+    font-size: 20px;
+  }
+  .tablet-flex-content-wrapper{
+    width:50vw;
+  }
+  .seat{
+    height:45px;
+    width:45px;
+  }
+  .ticket-info{
+    margin-top:15px;
+  }
+
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .seat {
+    height: 39px;
+    width: 39px;
+  }
+  .seat.taken::after {
+    font-size: 2.1em;
+  }
 }

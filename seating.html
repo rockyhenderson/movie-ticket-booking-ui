@@ -9,85 +9,16 @@
       src="https://kit.fontawesome.com/b6b5f43622.js"
       crossorigin="anonymous"
     ></script>
-    <style>
-      .seat-selector {
-        max-width: 800px;
-        margin: 20px;
-        padding: 20px;
-        text-align: center;
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .seat-map {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 seats per row */
-        gap: 10px;
-        margin: 20px auto;
-      }
-
-      /* Seat styles */
-      .seat {
-        width: 50px;
-        height: 50px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-      }
-
-      .seat.available {
-        background-color: #28a745; /* Green */
-      }
-
-      .seat.selected {
-        background-color: #007bff; /* Blue */
-      }
-
-      .seat.booked {
-        background-color: #6c757d; /* Gray */
-        cursor: not-allowed;
-      }
-
-      /* Hover effects */
-      .seat:hover:not(.booked) {
-        transform: scale(1.1);
-      }
-
-      .seat-summary {
-        margin-top: 20px;
-      }
-
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      button:disabled {
-        background-color: #6c757d;
-        cursor: not-allowed;
-      }
-
-      button:hover:not(:disabled) {
-        background-color: #0056b3;
-      }
-    </style>
   </head>
   <body>
     <div class="top-menu">
-      <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      <div class="back-arrow-wrapper">
+        <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      </div>
       <div class="breadcrumber">
         <nav class="breadcrumb">
           <span class="breadcrumb-item active" data-url="seating.html"
-            >Seat Selection</span
+            >Seats</span
           >
           <span class="breadcrumb-divider">></span>
           <span
@@ -103,122 +34,249 @@
       </div>
 
       <div class="countdown">
-        <div class="countdown-label">Time Left</div>
+        <div class="countdown-label">Seats Reserved For</div>
         <div class="countdown-timer">Loading</div>
       </div>
     </div>
     <div class="content-header">
       <h1>Godzilla</h1>
       <div class="payment-header-sub-info">
-        <div>
+        <div class="minor-info">
           <p class="subtext">Cinema</p>
           <p>Glasgow</p>
         </div>
-        <div>
+        <div class="minor-info">
           <p class="subtext">Showtime</p>
           <p>Fri, 13 Dec, 10:50</p>
         </div>
       </div>
     </div>
-    <div class="seat-selector">
-      <h2>Select Your Seats</h2>
-      <div id="seat-map" class="seat-map">
-        <!-- Hardcoded Seats -->
-        <div class="seat available" data-seat="A1"></div>
-        <div class="seat available" data-seat="A2"></div>
-        <div class="seat available" data-seat="A3"></div>
-        <div class="seat booked" data-seat="A4"></div>
-        <div class="seat available" data-seat="A5"></div>
+    <div class="tablet-flex-content-wrapper">
+      <div class="seating-wrapper">
+        <div class="seating-chart">
+          <!-- First Row with gaps and seats as specified -->
+          <div class="row">
+            <div class="seat gap"></div>
+            <!-- A1NoSeat -->
+            <div class="seat gap"></div>
+            <!-- A2NoSeat -->
+            <div class="seat"></div>
+            <!-- A3Seat -->
+            <div class="seat"></div>
+            <!-- A4Seat -->
+            <div class="seat gap"></div>
+            <!-- A5NoSeat -->
+            <div class="seat"></div>
+            <!-- A6Seat -->
+            <div class="seat"></div>
+            <!-- A7Seat -->
+            <div class="seat gap"></div>
+            <!-- A8NoSeat -->
+            <div class="seat gap"></div>
+            <!-- A9NoSeat -->
+          </div>
 
-        <div class="seat available" data-seat="B1"></div>
-        <div class="seat booked" data-seat="B2"></div>
-        <div class="seat available" data-seat="B3"></div>
-        <div class="seat available" data-seat="B4"></div>
-        <div class="seat booked" data-seat="B5"></div>
+          <!-- Rows below filled with seats -->
+          <div class="row">
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+          </div>
 
-        <div class="seat available" data-seat="C1"></div>
-        <div class="seat available" data-seat="C2"></div>
-        <div class="seat available" data-seat="C3"></div>
-        <div class="seat booked" data-seat="C4"></div>
-        <div class="seat available" data-seat="C5"></div>
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+          </div>
 
-        <div class="seat booked" data-seat="D1"></div>
-        <div class="seat available" data-seat="D2"></div>
-        <div class="seat available" data-seat="D3"></div>
-        <div class="seat available" data-seat="D4"></div>
-        <div class="seat booked" data-seat="D5"></div>
+          <div class="row">
+            <div class="seat"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat taken"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+          </div>
+          <div class="row">
+            <div class="seat gap"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat gap"></div>
+            <div class="seat gap"></div>
+          </div>
+        </div>
       </div>
-      <div class="seat-summary">
-        <p id="selected-seats">Selected Seats: None</p>
-        <button id="confirm-seats" disabled>Confirm Selection</button>
+      <div class="ticket-info">
+        <div class="status">
+          <div class="circle available"></div>
+          Available
+        </div>
+        <div class="status">
+          <div class="circle taken"></div>
+          Taken
+        </div>
+        <div class="status">
+          <div class="circle selected"></div>
+          Selected
+        </div>
+      </div>
+      <div class="seat-selection-wrapper">
+        <div id="seatsSelected" class="seats-selected">
+          Seats Selected: None
+        </div>
       </div>
     </div>
-
+    <div style="width: 100%; display: flex; justify-content: center">
+      <button
+        class="pay-button"
+        id="next-button"
+        style="margin: 0; margin-top: 10px"
+      >
+        Next
+      </button>
+    </div>
     <script>
-      const backIcon = document.getElementById("back-icon");
-
-      backIcon.addEventListener("click", () => {
-        window.history.back(); // Navigate to the previous page
+  document.addEventListener("DOMContentLoaded", () => {
+    // Intersection Observer to add 'in-view' class
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
       });
-      const seats = document.querySelectorAll(".seat.available");
-      const selectedSeatsDisplay = document.getElementById("selected-seats");
-      const confirmButton = document.getElementById("confirm-seats");
+    });
 
-      let selectedSeats = [];
+    document
+      .querySelectorAll(
+        ".seating-chart, .ticket-info, .ticket-counters, .venue-selector, .date-selector, .time-selector, .price-container, .promo-code-container, .seat-selection-wrapper, .price-breakdown"
+      )
+      .forEach((el) => {
+        observer.observe(el);
+      });
 
-      // Handle seat click
-      seats.forEach((seat) => {
-        seat.addEventListener("click", () => {
-          const seatId = seat.getAttribute("data-seat");
+    // Seat Selection Handling
+    const seats = document.querySelectorAll(".seat:not(.taken):not(.gap)");
+    const seatsSelectedDiv = document.getElementById("seatsSelected");
 
-          if (seat.classList.contains("selected")) {
-            // Deselect seat
-            seat.classList.remove("selected");
-            selectedSeats = selectedSeats.filter((s) => s !== seatId);
-          } else {
-            // Select seat
-            seat.classList.add("selected");
-            selectedSeats.push(seatId);
+    // Function to update the displayed selected seats text only
+    const updateSelectedSeatsText = () => {
+      const selectedSeats = document.querySelectorAll(".seat.selected");
+
+      if (selectedSeats.length > 0) {
+        const selectedSeatIds = Array.from(selectedSeats).map((seat) => {
+          const rowIndex = Array.from(seat.parentNode.parentNode.children).indexOf(seat.parentNode);
+          const seatIndex = Array.from(seat.parentNode.children).indexOf(seat);
+          return `${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`;
+        });
+        seatsSelectedDiv.textContent = `Seats Selected: ${selectedSeatIds.join(", ")}`;
+      } else {
+        seatsSelectedDiv.textContent = "Seats Selected: None";
+      }
+    };
+
+    // Add click event listener to each seat
+    seats.forEach((seat) => {
+      seat.addEventListener("click", () => {
+        // Toggle the 'selected' class on click
+        if (seat.classList.contains("selected")) {
+          seat.classList.remove("selected");
+          // Remove the Font Awesome icon
+          const icon = seat.querySelector(".fa-user");
+          if (icon) {
+            seat.removeChild(icon);
           }
+        } else {
+          seat.classList.add("selected");
+          // Create the Font Awesome icon and append it to the seat
+          const icon = document.createElement("i");
+          icon.classList.add("fas", "fa-user");
+          icon.style.color = "#d6b6ff";
+          seat.appendChild(icon);
+        }
 
-          // Update summary
-          selectedSeatsDisplay.textContent =
-            selectedSeats.length > 0
-              ? `Selected Seats: ${selectedSeats.join(", ")}`
-              : "Selected Seats: None";
-
-          // Enable/Disable confirm button
-          confirmButton.disabled = selectedSeats.length === 0;
-        });
+        // Update the selected seats text only (no sessionStorage here)
+        updateSelectedSeatsText();
       });
+    });
 
-      // Confirm button click
-      confirmButton.addEventListener("click", () => {
-        console.log("GOING TO NEXT PAGE");
-        window.location.href = "checkoutlogin.html";
-        // You can redirect or handle other logic here
-      });
-      // Function to add click event listeners to breadcrumb items
-      function setupBreadcrumbNavigation() {
-        const breadcrumbItems = document.querySelectorAll(".breadcrumb-item");
+    const backIcon = document.getElementById("back-icon");
 
-        breadcrumbItems.forEach((item) => {
-          item.addEventListener("click", (e) => {
-            const url = item.getAttribute("data-url");
+    backIcon.addEventListener("click", () => {
+      // If you want to clear sessionStorage seats upon going back:
+      sessionStorage.removeItem("selectedSeats");
+      sessionStorage.removeItem("numberOfSeats");
+      window.history.back(); // Navigate to the previous page
+    });
 
-            // Allow navigation only for completed steps
-            if (item.classList.contains("completed") && url) {
-              window.location.href = url; // Redirect if step is completed
-            } else {
-              e.preventDefault(); // Prevent default action
-              alert("You can only navigate to previous steps.");
-            }
-          });
+    // Confirm button click
+    const confirmButton = document.getElementById("next-button");
+    confirmButton.addEventListener("click", () => {
+      // Just before redirecting, store the current seat selection
+      const selectedSeats = document.querySelectorAll(".seat.selected");
+      if (selectedSeats.length > 0) {
+        const selectedSeatIds = Array.from(selectedSeats).map((seat) => {
+          const rowIndex = Array.from(seat.parentNode.parentNode.children).indexOf(seat.parentNode);
+          const seatIndex = Array.from(seat.parentNode.children).indexOf(seat);
+          return `${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`;
         });
+
+        // Store in sessionStorage just now
+        sessionStorage.setItem("selectedSeats", JSON.stringify(selectedSeatIds));
+        sessionStorage.setItem("numberOfSeats", selectedSeatIds.length.toString());
+      } else {
+        // No seats selected at the moment
+        sessionStorage.removeItem("selectedSeats");
+        sessionStorage.removeItem("numberOfSeats");
       }
 
-      // Initialize breadcrumb navigation
-      setupBreadcrumbNavigation();
+      // Now redirect
+      console.log("GOING TO NEXT PAGE");
+      window.location.href = "checkoutlogin.html";
+    });
+
+    // Function to add click event listeners to breadcrumb items
+    function setupBreadcrumbNavigation() {
+      const breadcrumbItems = document.querySelectorAll(".breadcrumb-item");
+
+      breadcrumbItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          const url = item.getAttribute("data-url");
+
+          // Allow navigation only for completed steps
+          if (item.classList.contains("completed") && url) {
+            window.location.href = url; // Redirect if step is completed
+          } else {
+            e.preventDefault(); // Prevent default action
+            alert("You can only navigate to previous steps.");
+          }
+        });
+      });
+    }
+
+    // Initialize breadcrumb navigation
+    setupBreadcrumbNavigation();
+  });
+</script>
+
     </script>
     <script src="booking.js"></script>
   </body>
