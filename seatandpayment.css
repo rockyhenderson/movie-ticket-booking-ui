@@ -1,128 +1,611 @@
 :root {
-    /* Primary and Secondary Colors */
-    --primary-bg: #29292f;
-    --secondary-bg: #2e2e2e;
-    --primary-color: #161620;
-    --secondary-color: #494848;
-    --tertiary-color: #2c2c2c;
+  /* Primary and Secondary Colors */
+  --primary-bg: #29292f;
+  --secondary-bg: #2e2e2e;
+  --primary-color: #161620;
+  --secondary-color: #494848;
+  --tertiary-color: #2c2c2c;
 
-    /* Text Colors */
-    --light-bg: #f9f9f9;
-    --dark-text: #333;
-    --light-text: #ffffff;
-    --text-color: #fff;
+  /* Text Colors */
+  --light-bg: #f9f9f9;
+  --dark-text: #333;
+  --light-text: #ffffff;
+  --text-color: #fff;
 
-    /* Accent and Button Colors */
-    --accent-gray: #8e8e8e;
-    --accent-light-gray: #aaa;
-    --button-bg: #555;
-    --button-hover-bg: #666;
+  /* Accent and Button Colors */
+  --accent-gray: #8e8e8e;
+  --accent-light-gray: #aaa;
+  --button-bg: #555;
+  --button-hover-bg: #666;
 
-    /* Highlight Colors */
-    --highlight-color: #960ff8;
-    --highlight-hover-color: #a041f8;
-    --highlight-active-color: #7400b8;
+  /* Highlight Colors */
+  --highlight-color: #960ff8;
+  --highlight-hover-color: #a041f8;
+  --highlight-active-color: #7400b8;
 
-    /* Status Colors */
-    --success-bg: #4caf50;
-    --danger-bg: #f44336;
-    --info-bg: #0056b3;
+  /* Status Colors */
+  --success-bg: #4caf50;
+  --danger-bg: #f44336;
+  --info-bg: #0056b3;
+}
+
+body {
+  max-width: 1100px;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif !important;
+  background-color: var(--primary-bg);
+  color: var(--light-text);
+  padding: 0 15px;
+}
+
+.top-menu {
+  padding: 10px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: var(--light-text);
+}
+
+#back-icon {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+#back-icon:hover {
+  transform: scale(1.1);
+  color: var(--highlight-hover-color);
+}
+
+#back-icon:active {
+  transform: scale(0.9);
+}
+
+.countdown {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #01019f; /* Modern deep blue */
+  padding: 10px 20px; /* Compact padding */
+  border-radius: 8px; /* Smooth edges */
+  color: #4c4c4e; /* White text for contrast */
+}
+
+.countdown-label {
+  font-size: 14x; /* Subtle size for the label */
+  font-weight: 700; /* Bold for emphasis */
+  text-transform: uppercase; /* Modern uppercase text */
+  color: rgb(176, 176, 176); /* Light blue for contrast with deep blue */
+  letter-spacing: 1px; /* Add spacing for sleek look */
+  margin-bottom: 4px; /* Space between label and timer */
+}
+
+.countdown-timer {
+  font-size: 28px; /* Emphasized size for the timer */
+  font-weight: 800; /* Strong emphasis */
+  color: #ffffff !important; /* Crisp white text */
+  letter-spacing: 1.5px; /* Slight letter spacing for style */
+}
+
+.payment-content {
+  margin: 20px 0;
+}
+
+.content-header h1 {
+  font-size: 70px;
+  margin: 0 0 10px;
+}
+
+.content-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid var(--accent-gray);
+}
+
+p {
+  margin: 5px 0;
+}
+
+.subtext {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--accent-light-gray);
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.payment-header-sub-info {
+  display: flex;
+
+  gap: 10px;
+}
+
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  margin: 10px 0;
+  background-color: #202020;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ticket-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #eee;
+}
+
+.ticket-price {
+  font-size: 1.2rem;
+  margin-right: 4em;
+  color: #ccc;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control button {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  font-size: 20px; /* Increase font size for better readability */
+  border-radius: 5px; /* Optional: adds a slight rounded corner */
+  border: 1px solid #ccc; /* Optional: defines the border */
+  cursor: pointer; /* Adds a pointer cursor for better UX */
+}
+
+.quantity-control button:hover {
+  background-color: #666;
+  transform: scale(1.1);
+}
+
+.quantity-control button:active {
+  background-color: #555;
+  transform: scale(0.9);
+}
+
+.quantity-control button:disabled {
+  opacity: 0.5; /* Makes disabled buttons look visually distinct */
+  cursor: not-allowed; /* Changes cursor for disabled state */
+}
+
+.quantity-display {
+  margin: 0 15px;
+  font-size: 1rem;
+  width: 35px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+.total-cost {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.next-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  background-color: #444;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.next-button:disabled {
+  background-color: #333;
+  cursor: not-allowed;
+}
+.ticket-header {
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.ticket-status {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1d1d29;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #eee;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.ticket-inner-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.payment-summary {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+.payment-summary span {
+  font-size: 18px;
+}
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.discount-code {
+  margin-top: 15px;
+  border-bottom: 1px solid var(--accent-gray);
+}
+
+.discount-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px; /* Increased font size */
+  font-weight: bold;
+  color: white; /* Set text to white */
+}
+
+.discount-toggle button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #4caf50; /* Match primary color */
+  transition: transform 0.2s ease-in-out;
+}
+
+.discount-toggle button:hover {
+  transform: scale(1.1);
+}
+
+.discount-input-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden; /* Ensures smooth animation visibility */
+  max-height: 0; /* Start hidden */
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* Smooth animation */
+  opacity: 0; /* Hidden by default */
+}
+
+.discount-input-wrapper.open {
+  max-height: 100px; /* Enough space for input and button */
+  opacity: 1; /* Fully visible */
+  margin-bottom: 5px;
+}
+
+.discount-input-wrapper input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.discount-input-wrapper input:focus {
+  border-color: #4caf50;
+}
+
+.discount-input-wrapper button {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.discount-input-wrapper button:hover {
+  background-color: #45a049;
+}
+
+.discount-input-wrapper button:active {
+  transform: scale(0.98);
+}
+
+@media only screen and (max-width: 600px) {
+  .ticket-price {
+    margin-right: 1rem;
   }
+}
+.pay-button {
+  display: block;
+  width: 100%; /* Full-width for smaller screens */
+  max-width: 300px; /* Restricts width on larger screens */
+  margin: 20px auto; /* Center the button */
+  padding: 15px 20px;
+  font-size: 25px; /* Emphasized font size */
+  font-weight: bold;
+  text-align: center;
+  color: var(--light-text); /* Uses light text color */
+  background: var(--highlight-color); /* Highlight button color */
+  border: none;
+  border-radius: 8px; /* Smooth rounded corners */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-left: 0;
+}
 
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif !important;
-    background-color: var(--primary-bg);
-    color: var(--light-text);
-    padding: 0 15px;
-  }
+.pay-button:hover {
+  background: var(--highlight-hover-color); /* Slightly brighter on hover */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
 
-  .top-menu {
-    padding: 10px 20px;
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    color: var(--light-text);
-  }
+.pay-button:active {
+  background: var(--highlight-active-color); /* Darker shade for active state */
+  transform: translateY(2px); /* Press effect */
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+}
 
-  #back-icon {
-    cursor: pointer;
-    font-size: 30px;
-  }
+.pay-button:disabled {
+  background: var(--accent-gray); /* Gray for disabled state */
+  cursor: not-allowed;
+  box-shadow: none;
+  color: var(--accent-light-gray); /* Lighter text for disabled state */
+}
 
-  #back-icon:hover {
-    transform: scale(1.1);
-    color: var(--highlight-hover-color);
-  }
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-light-gray); /* Default text color */
+  gap: 10px; /* Spacing between items */
+}
 
-  #back-icon:active {
-    transform: scale(0.9);
-  }
+.breadcrumb-item {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px; /* Modern font size */
+  font-weight: 600;
+}
 
-  .breadcrumber {
-    height: 30px;
-    background-color: var(--success-bg);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--light-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+/* Completed Steps */
+.breadcrumb-item.completed {
+  background-color: var(
+    --secondary-color
+  ); /* Subtle background for completed steps */
+  color: var(--light-text); /* White text for completed steps */
+}
 
-  .countdown {
-    display: flex;
-    flex-direction: column;
-    padding:5px;
-    height: 50px;
-    width:140px;
-    background-color: var(--info-bg);
-    border-radius: 5px;
-    color: var(--light-text);
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: bold;
-  }
+/* Active Step */
+.breadcrumb-item.active {
+  background-color: var(--highlight-hover-color); /* Highlighted background */
+  color: var(--light-text); /* White text for active step */
+  border: 2px solid var(--highlight-hover-color); /* Border to emphasize active step */
+}
 
-  .payment-content {
-    margin: 20px 0;
-  }
+/* Future Steps */
+.breadcrumb-item.future-step {
+  background-color: var(--secondary-bg); /* Dim background for future steps */
+  color: var(--accent-gray); /* Muted text for future steps */
+  border: 1px dashed var(--accent-gray); /* Dashed border to indicate it's upcoming */
+}
 
-  .payment-content h1 {
-    font-size: 70px;
-    margin: 0 0 10px;
-  }
+/* Divider */
+.breadcrumb-divider {
+  color: var(--accent-light-gray); /* Subtle divider color */
+  font-size: 12px;
+}
+.breadcrumb-item.completed {
+  cursor: pointer;
+}
 
-  .payment-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
-    border-bottom: 1px solid var(--accent-gray);
-    padding-bottom: 15px;
-  }
+.breadcrumb-item.future-step {
+  cursor: not-allowed;
+  opacity: 0.5; /* Dim inactive steps */
+}
+.breadcrumb-item.active {
+  cursor: not-allowed;
+}
 
-  p {
-    margin: 5px 0;
-  }
+.discount-info {
+  position: relative; /* Ensure the tooltip is positioned relative to the icon */
+  display: inline-block;
+  margin-left: 10px;
+}
 
-  .subtext {
-    font-size: 14px;
-    text-transform: uppercase;
-    color: var(--accent-light-gray);
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
+.info-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: var(--highlight-color);
+  color: var(--light-text);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .payment-header-sub-info {
-    display: flex;
-    
-    gap: 10px;
-  }
+.info-icon:hover {
+  background-color: var(--highlight-hover-color);
+}
+
+.tooltip {
+  position: absolute;
+  top: 30px; /* Position the tooltip above the icon */
+  left: 50%; /* Center tooltip horizontally */
+  transform: translateX(-50%);
+  background-color: var(--secondary-bg); /* Tooltip background */
+  color: var(--light-text);
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  width: 250px; /* Fixed width for consistent appearance */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Prevent interactions when hidden */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9999; /* High z-index to ensure it appears above all elements */
+}
+
+/* Tooltip header */
+.tooltip h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--highlight-color);
+}
+
+/* Tooltip list */
+.tooltip ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.tooltip ul li {
+  margin: 5px 0;
+}
+
+/* Show tooltip on hover */
+.discount-info:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+.no-actions {
+  pointer-events: none; /* Disable clicks */
+  opacity: 0.5; /* Dim the page */
+}
+
+/* Container Box */
+
+/* Title */
+.details-title {
+  font-weight: bold;
+  color: var(--light-text); /* White text for contrast */
+}
+
+/* Buttons */
+.details-buttons {
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  width:450px;
+  margin: auto;
+}
+
+.details-button {
+  border-radius: 0 15px 15px 0;
+  width: 200px; /* Equal width buttons */
+  max-width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--light-text); /* White text */
+  background-color: var(--button-bg); /* Button background */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.details-button:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+.details-button:hover {
+  background-color: var(--button-hover-bg); /* Darker background on hover */
+}
+
+.details-button:active {
+  transform: scale(0.95); /* Click effect */
+}
+
+/* Output Divs */
+.output-divs {
+  margin: 20px auto;
+  width: 300px;
+}
+
+.red-div,
+.blue-div {
+  height: 200px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.red-div {
+  background-color: red;
+}
+
+.blue-div {
+  background-color: blue;
+}
+
+.hidden {
+  display: none;
+}
+h2 {
+  margin-top: 10px;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+p {
+  margin: 0;
+}
+.details-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.details-button.selected {
+  background-color: var(--highlight-color); /* Highlighted color */
+  color: var(--light-text); /* White text for contrast */
+  box-shadow: 0 0 10px 3px rgba(150, 15, 248, 0.7),
+              0 0 20px 6px rgba(150, 15, 248, 0.5),
+              0 0 30px 10px rgba(150, 15, 248, 0.3); /* Reduced shadow layers */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.details-button.selected:hover {
+  transform: scale(1.03); /* Slight scale effect on hover */
+  box-shadow: 0 0 15px 6px rgba(150, 15, 248, 0.8),
+              0 0 25px 10px rgba(150, 15, 248, 0.6),
+              0 0 40px 15px rgba(150, 15, 248, 0.4); /* Slightly intensified shadow on hover */
+}
+.details-box{
+  align-items: center;
+  max-width: 450px;
+  margin: auto;
+}
+.details-title{
+  margin:auto;
+  width:fit-content
+}

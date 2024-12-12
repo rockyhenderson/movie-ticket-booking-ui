@@ -1,21 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="seatandpayment.css">
-</head>
-<body>
+    <link rel="stylesheet" href="seatandpayment.css" />
+    <script
+      src="https://kit.fontawesome.com/b6b5f43622.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div class="top-menu">
-        <i id="back-icon" class="fa-solid fa-arrow-left"></i>
-        <div class="breadcrumber">Step 2/3</div>
-        <div class="countdown">
-            <p>Time Left</p>
-            <p>10:00</p>
+      <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      <div class="breadcrumber">
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item completed" data-url="seating.html"
+            >Seat Selection</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span class="breadcrumb-item active" data-url="checkoutlogin.html"
+            >Details</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span class="breadcrumb-item future-step" data-url="payment.html"
+            >Payment</span
+          >
+        </nav>
+      </div>
+
+      <div class="countdown">
+        <div class="countdown-label">Time Left</div>
+        <div class="countdown-timer">Loading</div>
+      </div>
+    </div>
+    <div class="content-header">
+      <h1>Godzilla</h1>
+      <div class="payment-header-sub-info">
+        <div>
+          <p class="subtext">Cinema</p>
+          <p>Glasgow</p>
+        </div>
+        <div>
+          <p class="subtext">Showtime</p>
+          <p>Fri, 13 Dec, 10:50</p>
         </div>
       </div>
-      <h1>LOGIN</h1>
-      
-</body>
+    </div>
+
+    <div class="details-box">
+      <h2 class="details-title">Details</h2>
+      <div class="details-buttons">
+        <button class="details-button login-btn selected">Login</button>
+        <button class="details-button guest-btn">Guest</button>
+      </div>
+    </div>
+
+    <div class="output-divs">
+      <div id="login-div" class="red-div"></div>
+      <div id="guest-div" class="hidden blue-div"></div>
+    </div>
+
+    <button id="confirm-seats">Next</button>
+    <script>
+      // Select buttons and divs
+      const loginButton = document.querySelector(".login-btn");
+      const guestButton = document.querySelector(".guest-btn");
+      const loginDiv = document.getElementById("login-div");
+      const guestDiv = document.getElementById("guest-div");
+
+      // Function to handle button selection
+      function handleButtonClick(
+        selectedButton,
+        otherButton,
+        showDiv,
+        hideDiv
+      ) {
+        selectedButton.classList.add("selected"); // Add selected style
+        otherButton.classList.remove("selected"); // Remove selected style
+        showDiv.classList.remove("hidden"); // Show selected div
+        hideDiv.classList.add("hidden"); // Hide other div
+      }
+
+      // Set default state (Login selected by default)
+      handleButtonClick(loginButton, guestButton, loginDiv, guestDiv);
+
+      // Event listeners for button clicks
+      loginButton.addEventListener("click", () => {
+        handleButtonClick(loginButton, guestButton, loginDiv, guestDiv);
+      });
+
+      guestButton.addEventListener("click", () => {
+        handleButtonClick(guestButton, loginButton, guestDiv, loginDiv);
+      });
+
+      // Back button functionality
+      const backIcon = document.getElementById("back-icon");
+      backIcon.addEventListener("click", () => {
+        window.history.back(); // Navigate to the previous page
+      });
+
+      // Confirm button functionality
+      const confirmButton = document.getElementById("confirm-seats");
+      confirmButton.addEventListener("click", () => {
+        console.log("GOING TO NEXT PAGE");
+        window.location.href = "payment.html";
+      });
+
+      // Breadcrumb navigation functionality
+      function setupBreadcrumbNavigation() {
+        const breadcrumbItems = document.querySelectorAll(".breadcrumb-item");
+
+        breadcrumbItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            const url = item.getAttribute("data-url");
+
+            // Allow navigation only for completed steps
+            if (item.classList.contains("completed") && url) {
+              window.location.href = url; // Redirect if step is completed
+            } else {
+              e.preventDefault(); // Prevent default action
+              alert("You can only navigate to previous steps.");
+            }
+          });
+        });
+      }
+
+      // Initialize breadcrumb navigation
+      setupBreadcrumbNavigation();
+    </script>
+    <script src="booking.js"></script>
+  </body>
 </html>

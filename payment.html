@@ -13,14 +13,29 @@
   <body>
     <div class="top-menu">
       <i id="back-icon" class="fa-solid fa-arrow-left"></i>
-      <div class="breadcrumber">Step 2/3</div>
+      <div class="breadcrumber">
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item completed" data-url="seating.html"
+            >Seat Selection</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span class="breadcrumb-item completed" data-url="checkoutlogin.html"
+            >Details</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span class="breadcrumb-item active" data-url="payment.html"
+            >Payment</span
+          >
+        </nav>
+      </div>
+
       <div class="countdown">
-          <p>Time Left</p>
-          <p>10:00</p>
+        <div class="countdown-label">Time Left</div>
+        <div class="countdown-timer">Loading</div>
       </div>
     </div>
     <div class="payment-content">
-      <div class="payment-header">
+      <div class="content-header">
         <h1>Godzilla</h1>
         <div class="payment-header-sub-info">
           <div>
@@ -33,6 +48,270 @@
           </div>
         </div>
       </div>
+      <div class="ticket-header">
+        <h2>Select Your Tickets</h2>
+        <div class="ticket-status" id="ticket-status">1/2 Tickets Selected</div>
+      </div>
+      <div class="ticket-item">
+        <div class="ticket-name">Adult Recliner</div>
+        <div class="ticket-inner-wrapper">
+          <div class="ticket-price">&pound;14.00</div>
+          <div class="quantity-control">
+            <button id="adult-minus" disabled>-</button>
+            <div class="quantity-display" id="adult-quantity">1</div>
+            <button id="adult-plus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-item">
+        <div class="ticket-name">Child Recliner</div>
+        <div class="ticket-inner-wrapper">
+          <div class="ticket-price">&pound;9.50</div>
+          <div class="quantity-control">
+            <button id="child-minus" disabled>-</button>
+            <div class="quantity-display" id="child-quantity">0</div>
+            <button id="child-plus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-summary">
+        <h2>Payment Summary</h2>
+        <div class="discount-code">
+          <div class="discount-toggle">
+            <div>
+              <span>Discount Code</span>
+              <div class="discount-info">
+                <span class="info-icon">?</span>
+                <div class="tooltip">
+                  <h3>Available Discount Codes</h3>
+                  <ul>
+                    <li><b>DISCOUNT10</b> - £10 off</li>
+                    <li><b>50OFF</b> - 50% off your total price</li>
+                    <li><b>FREE100</b> - 100% off (Your total is free!)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <button id="toggle-discount">+</button>
+          </div>
+          <div class="discount-input-wrapper" id="discount-input-wrapper">
+            <input type="text" id="discount-input" placeholder="Enter code" />
+
+            <button id="apply-discount">Apply</button>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <span
+            >Adult Tickets (x<span id="summary-adult-quantity">1</span>)</span
+          >
+          <span>£<span id="summary-adult-cost">14.00</span></span>
+        </div>
+        <div class="summary-item">
+          <span
+            >Child Tickets (x<span id="summary-child-quantity">0</span>)</span
+          >
+          <span>£<span id="summary-child-cost">0.00</span></span>
+        </div>
+        <div class="summary-item">
+          <span>Booking Fee</span>
+          <span>£1.00</span>
+        </div>
+        <div class="summary-item">
+          <span>Discount</span>
+          <span>-£<span id="discount-value">0.00</span></span>
+        </div>
+        <hr />
+        <div class="summary-total">
+          <span>Total</span>
+          <span>£<span id="final-total">15.00</span></span>
+        </div>
+        <button class="pay-button">Pay</button>
+      </div>
     </div>
+    <script>
+      // 1. Discount Code Toggle
+      const toggleDiscountButton = document.getElementById("toggle-discount");
+      const discountInputWrapper = document.getElementById(
+        "discount-input-wrapper"
+      );
+
+      toggleDiscountButton.addEventListener("click", () => {
+        const isOpen = discountInputWrapper.classList.contains("open");
+
+        if (isOpen) {
+          discountInputWrapper.classList.remove("open");
+          toggleDiscountButton.textContent = "+";
+        } else {
+          discountInputWrapper.classList.add("open");
+          toggleDiscountButton.textContent = "-";
+        }
+      });
+
+      // 2. Ticket Pricing and Selection
+      const adultPrice = 14.0;
+      const childPrice = 9.5;
+
+      let adultQuantity = 1;
+      let childQuantity = 0;
+
+      const totalTickets = 2; // Total tickets allowed
+
+      // Ticket DOM Elements
+      const adultMinus = document.getElementById("adult-minus");
+      const adultPlus = document.getElementById("adult-plus");
+      const childMinus = document.getElementById("child-minus");
+      const childPlus = document.getElementById("child-plus");
+      const adultQuantityDisplay = document.getElementById("adult-quantity");
+      const childQuantityDisplay = document.getElementById("child-quantity");
+      const ticketStatus = document.getElementById("ticket-status");
+
+      // Payment Summary DOM Elements
+      const summaryAdultQuantity = document.getElementById(
+        "summary-adult-quantity"
+      );
+      const summaryAdultCost = document.getElementById("summary-adult-cost");
+      const summaryChildQuantity = document.getElementById(
+        "summary-child-quantity"
+      );
+      const summaryChildCost = document.getElementById("summary-child-cost");
+      const discountInput = document.getElementById("discount-input");
+      const applyDiscountButton = document.getElementById("apply-discount");
+      const discountValue = document.getElementById("discount-value");
+      const finalTotal = document.getElementById("final-total");
+
+      let discount = 0; // Initialize discount value
+
+      // Update Ticket Display and Payment Summary
+      function updateDisplay() {
+        // Update ticket quantities
+        adultQuantityDisplay.textContent = adultQuantity;
+        childQuantityDisplay.textContent = childQuantity;
+
+        // Update total tickets selected
+        const totalSelected = adultQuantity + childQuantity;
+        const totalCost =
+          adultQuantity * adultPrice + childQuantity * childPrice;
+
+        ticketStatus.textContent = `${totalSelected}/${totalTickets} Tickets Selected`;
+
+        // Enable/Disable "+" buttons
+        adultPlus.disabled = totalSelected >= totalTickets;
+        childPlus.disabled = totalSelected >= totalTickets;
+
+        // Enable/Disable "-" buttons
+        adultMinus.disabled = adultQuantity <= 1;
+        childMinus.disabled = childQuantity <= 0;
+
+        // Update payment summary
+        updateSummary();
+      }
+
+      // Update Payment Summary Dynamically
+      function updateSummary() {
+        const totalCost =
+          adultQuantity * adultPrice +
+          childQuantity * childPrice +
+          1 - // Booking fee
+          discount;
+
+        summaryAdultQuantity.textContent = adultQuantity;
+        summaryAdultCost.textContent = (adultQuantity * adultPrice).toFixed(2);
+        summaryChildQuantity.textContent = childQuantity;
+        summaryChildCost.textContent = (childQuantity * childPrice).toFixed(2);
+        discountValue.textContent = discount.toFixed(2);
+        finalTotal.textContent = totalCost < 0 ? "0.00" : totalCost.toFixed(2);
+      }
+
+      // Apply Discount Codes
+      applyDiscountButton.addEventListener("click", () => {
+        const discountCode = discountInput.value.trim().toUpperCase();
+        const baseTotal =
+          adultQuantity * adultPrice + childQuantity * childPrice + 1;
+
+        if (discountCode === "DISCOUNT10") {
+          discount = 10; // £10 off
+          alert("£10 discount applied!");
+        } else if (discountCode === "50OFF") {
+          discount = baseTotal / 2; // Add the total amount again
+          alert("You got 50% off!");
+        } else if (discountCode === "FREE100") {
+          discount = baseTotal; // 100% off
+          alert("Your total is free!");
+        } else {
+          discount = 0; // Reset discount for invalid code
+          alert("Invalid discount code.");
+        }
+
+        // Prevent double negatives in the discount display
+        if (discount < 0) {
+          discountValue.textContent = `-${Math.abs(discount).toFixed(2)}`;
+        }
+
+        updateSummary();
+      });
+
+      // Ticket Quantity Adjustments
+      adultMinus.addEventListener("click", () => {
+        if (adultQuantity > 1) {
+          adultQuantity--;
+          updateDisplay();
+        }
+      });
+
+      adultPlus.addEventListener("click", () => {
+        if (adultQuantity + childQuantity < totalTickets) {
+          adultQuantity++;
+          updateDisplay();
+        }
+      });
+
+      childMinus.addEventListener("click", () => {
+        if (childQuantity > 0) {
+          childQuantity--;
+          updateDisplay();
+        }
+      });
+
+      childPlus.addEventListener("click", () => {
+        if (adultQuantity + childQuantity < totalTickets) {
+          childQuantity++;
+          updateDisplay();
+        }
+      });
+
+      // 3. Breadcrumb Navigation
+      function setupBreadcrumbNavigation() {
+        const breadcrumbItems = document.querySelectorAll(".breadcrumb-item");
+
+        breadcrumbItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            const url = item.getAttribute("data-url");
+
+            // Allow navigation only for completed steps
+            if (item.classList.contains("completed") && url) {
+              window.location.href = url;
+            } else {
+              e.preventDefault();
+              alert("You can only navigate to previous steps.");
+            }
+          });
+        });
+      }
+
+      // 4. Back Button Functionality
+      const backIcon = document.getElementById("back-icon");
+
+      backIcon.addEventListener("click", () => {
+        window.history.back(); // Navigate to the previous page
+      });
+
+      // Initialize All Functions
+      updateDisplay();
+      setupBreadcrumbNavigation();
+    </script>
+    <script src="booking.js"></script>
   </body>
 </html>

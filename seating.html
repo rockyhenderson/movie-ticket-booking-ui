@@ -1,165 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seat Selection</title>
-  <link rel="stylesheet" href="seatandpayment.css">
-  <script
-  src="https://kit.fontawesome.com/b6b5f43622.js"
-  crossorigin="anonymous"
-></script>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seat Selection</title>
+    <link rel="stylesheet" href="seatandpayment.css" />
+    <script
+      src="https://kit.fontawesome.com/b6b5f43622.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .seat-selector {
+        max-width: 800px;
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-    .seat-selector {
-      max-width: 800px;
-      margin: 20px;
-      padding: 20px;
-      text-align: center;
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+      .seat-map {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 seats per row */
+        gap: 10px;
+        margin: 20px auto;
+      }
 
-    .seat-map {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr); /* 5 seats per row */
-      gap: 10px;
-      margin: 20px auto;
-    }
+      /* Seat styles */
+      .seat {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
 
-    /* Seat styles */
-    .seat {
-      width: 50px;
-      height: 50px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease;
-    }
+      .seat.available {
+        background-color: #28a745; /* Green */
+      }
 
-    .seat.available {
-      background-color: #28a745; /* Green */
-    }
+      .seat.selected {
+        background-color: #007bff; /* Blue */
+      }
 
-    .seat.selected {
-      background-color: #007bff; /* Blue */
-    }
+      .seat.booked {
+        background-color: #6c757d; /* Gray */
+        cursor: not-allowed;
+      }
 
-    .seat.booked {
-      background-color: #6c757d; /* Gray */
-      cursor: not-allowed;
-    }
+      /* Hover effects */
+      .seat:hover:not(.booked) {
+        transform: scale(1.1);
+      }
 
-    /* Hover effects */
-    .seat:hover:not(.booked) {
-      transform: scale(1.1);
-    }
+      .seat-summary {
+        margin-top: 20px;
+      }
 
-    .seat-summary {
-      margin-top: 20px;
-    }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+      button:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+      }
 
-    button:disabled {
-      background-color: #6c757d;
-      cursor: not-allowed;
-    }
+      button:hover:not(:disabled) {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-menu">
+      <i id="back-icon" class="fa-solid fa-arrow-left"></i>
+      <div class="breadcrumber">
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item active" data-url="seating.html"
+            >Seat Selection</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span
+            class="breadcrumb-item future-step"
+            data-url="checkoutlogin.html"
+            >Details</span
+          >
+          <span class="breadcrumb-divider">></span>
+          <span class="breadcrumb-item future-step" data-url="payment.html"
+            >Payment</span
+          >
+        </nav>
+      </div>
 
-    button:hover:not(:disabled) {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <div class="top-menu">
-    <i id="back-icon" class="fa-solid fa-arrow-left"></i>
-    <div class="breadcrumber">Step 1/3</div>
-    <div class="countdown">10:00</div>
-  </div>
-  <div class="seat-selector">
-    <h2>Select Your Seats</h2>
-    <div id="seat-map" class="seat-map">
-      <!-- Hardcoded Seats -->
-      <div class="seat available" data-seat="A1"></div>
-      <div class="seat available" data-seat="A2"></div>
-      <div class="seat available" data-seat="A3"></div>
-      <div class="seat booked" data-seat="A4"></div>
-      <div class="seat available" data-seat="A5"></div>
-
-      <div class="seat available" data-seat="B1"></div>
-      <div class="seat booked" data-seat="B2"></div>
-      <div class="seat available" data-seat="B3"></div>
-      <div class="seat available" data-seat="B4"></div>
-      <div class="seat booked" data-seat="B5"></div>
-
-      <div class="seat available" data-seat="C1"></div>
-      <div class="seat available" data-seat="C2"></div>
-      <div class="seat available" data-seat="C3"></div>
-      <div class="seat booked" data-seat="C4"></div>
-      <div class="seat available" data-seat="C5"></div>
-
-      <div class="seat booked" data-seat="D1"></div>
-      <div class="seat available" data-seat="D2"></div>
-      <div class="seat available" data-seat="D3"></div>
-      <div class="seat available" data-seat="D4"></div>
-      <div class="seat booked" data-seat="D5"></div>
+      <div class="countdown">
+        <div class="countdown-label">Time Left</div>
+        <div class="countdown-timer">Loading</div>
+      </div>
     </div>
-    <div class="seat-summary">
-      <p id="selected-seats">Selected Seats: None</p>
-      <button id="confirm-seats" disabled>Confirm Selection</button>
+    <div class="content-header">
+      <h1>Godzilla</h1>
+      <div class="payment-header-sub-info">
+        <div>
+          <p class="subtext">Cinema</p>
+          <p>Glasgow</p>
+        </div>
+        <div>
+          <p class="subtext">Showtime</p>
+          <p>Fri, 13 Dec, 10:50</p>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="seat-selector">
+      <h2>Select Your Seats</h2>
+      <div id="seat-map" class="seat-map">
+        <!-- Hardcoded Seats -->
+        <div class="seat available" data-seat="A1"></div>
+        <div class="seat available" data-seat="A2"></div>
+        <div class="seat available" data-seat="A3"></div>
+        <div class="seat booked" data-seat="A4"></div>
+        <div class="seat available" data-seat="A5"></div>
 
-  <script>
-    const seats = document.querySelectorAll(".seat.available");
-    const selectedSeatsDisplay = document.getElementById("selected-seats");
-    const confirmButton = document.getElementById("confirm-seats");
+        <div class="seat available" data-seat="B1"></div>
+        <div class="seat booked" data-seat="B2"></div>
+        <div class="seat available" data-seat="B3"></div>
+        <div class="seat available" data-seat="B4"></div>
+        <div class="seat booked" data-seat="B5"></div>
 
-    let selectedSeats = [];
+        <div class="seat available" data-seat="C1"></div>
+        <div class="seat available" data-seat="C2"></div>
+        <div class="seat available" data-seat="C3"></div>
+        <div class="seat booked" data-seat="C4"></div>
+        <div class="seat available" data-seat="C5"></div>
 
-    // Handle seat click
-    seats.forEach((seat) => {
-      seat.addEventListener("click", () => {
-        const seatId = seat.getAttribute("data-seat");
+        <div class="seat booked" data-seat="D1"></div>
+        <div class="seat available" data-seat="D2"></div>
+        <div class="seat available" data-seat="D3"></div>
+        <div class="seat available" data-seat="D4"></div>
+        <div class="seat booked" data-seat="D5"></div>
+      </div>
+      <div class="seat-summary">
+        <p id="selected-seats">Selected Seats: None</p>
+        <button id="confirm-seats" disabled>Confirm Selection</button>
+      </div>
+    </div>
 
-        if (seat.classList.contains("selected")) {
-          // Deselect seat
-          seat.classList.remove("selected");
-          selectedSeats = selectedSeats.filter((s) => s !== seatId);
-        } else {
-          // Select seat
-          seat.classList.add("selected");
-          selectedSeats.push(seatId);
-        }
+    <script>
+      const backIcon = document.getElementById("back-icon");
 
-        // Update summary
-        selectedSeatsDisplay.textContent =
-          selectedSeats.length > 0
-            ? `Selected Seats: ${selectedSeats.join(", ")}`
-            : "Selected Seats: None";
-
-        // Enable/Disable confirm button
-        confirmButton.disabled = selectedSeats.length === 0;
+      backIcon.addEventListener("click", () => {
+        window.history.back(); // Navigate to the previous page
       });
-    });
+      const seats = document.querySelectorAll(".seat.available");
+      const selectedSeatsDisplay = document.getElementById("selected-seats");
+      const confirmButton = document.getElementById("confirm-seats");
 
-    // Confirm button click
-    confirmButton.addEventListener("click", () => {
-        window.location.href = "payment.html";
-      // You can redirect or handle other logic here
-    });
-  </script>
-</body>
+      let selectedSeats = [];
+
+      // Handle seat click
+      seats.forEach((seat) => {
+        seat.addEventListener("click", () => {
+          const seatId = seat.getAttribute("data-seat");
+
+          if (seat.classList.contains("selected")) {
+            // Deselect seat
+            seat.classList.remove("selected");
+            selectedSeats = selectedSeats.filter((s) => s !== seatId);
+          } else {
+            // Select seat
+            seat.classList.add("selected");
+            selectedSeats.push(seatId);
+          }
+
+          // Update summary
+          selectedSeatsDisplay.textContent =
+            selectedSeats.length > 0
+              ? `Selected Seats: ${selectedSeats.join(", ")}`
+              : "Selected Seats: None";
+
+          // Enable/Disable confirm button
+          confirmButton.disabled = selectedSeats.length === 0;
+        });
+      });
+
+      // Confirm button click
+      confirmButton.addEventListener("click", () => {
+        console.log("GOING TO NEXT PAGE");
+        window.location.href = "checkoutlogin.html";
+        // You can redirect or handle other logic here
+      });
+      // Function to add click event listeners to breadcrumb items
+      function setupBreadcrumbNavigation() {
+        const breadcrumbItems = document.querySelectorAll(".breadcrumb-item");
+
+        breadcrumbItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            const url = item.getAttribute("data-url");
+
+            // Allow navigation only for completed steps
+            if (item.classList.contains("completed") && url) {
+              window.location.href = url; // Redirect if step is completed
+            } else {
+              e.preventDefault(); // Prevent default action
+              alert("You can only navigate to previous steps.");
+            }
+          });
+        });
+      }
+
+      // Initialize breadcrumb navigation
+      setupBreadcrumbNavigation();
+    </script>
+    <script src="booking.js"></script>
+  </body>
 </html>
