@@ -165,7 +165,11 @@
       let adultQuantity = 1;
       let childQuantity = 0;
 
-      const totalTickets = JSON.parse(sessionStorage.getItem("selectedSeats"))?.length || 0;
+      const totalTickets =
+        JSON.parse(sessionStorage.getItem("selectedSeats"))?.length || 0;
+      document.getElementById(
+        "ticket-status"
+      ).textContent = `1/${totalTickets} Tickets Selected`;
 
       // Ticket DOM Elements
       const adultMinus = document.getElementById("adult-minus");
